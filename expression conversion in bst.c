@@ -18,12 +18,12 @@ struct tree *root1;
 void push(struct tree *root)
 {
     top = top+1;
-    stack[top] = root;
+    stack[top] = root;                             //opearands are push in stack
     printf("\nstack data %p",stack[top]);
 }
 struct tree *pop()
 {
-    return(stack[top--]);
+    return(stack[top--]);                   //if there is any operator found then first top two operands get popped out
 }
 void inorder(struct tree *root)
 {
@@ -35,22 +35,22 @@ void inorder(struct tree *root)
     {
         if(root!=NULL)
         {
-            inorder(root->left);
+            inorder(root->left);                    //first traversed left part of tree then on right
         }
-        printf("%c",root->data);
+        printf("%c",root->data);                  //as soon as left portion is traversed we print leftmost child then on we go to right part of it
         inorder(root->right);
     }
 }
 void operand(char b)
 {
     struct tree*root;
-    root= (struct tree *)malloc(sizeof(struct tree));
+    root= (struct tree *)malloc(sizeof(struct tree));             //new node is made for operand
     root->data = b;
     root->left = NULL;
     root->right = NULL;
     printf("\n%c",root->data);
     printf("\nOperand address :%p",root);
-    push(root);
+    push(root);                                   //as root node is prepared it get pushed in stack
     
 }
 void operator(char a)
@@ -59,8 +59,8 @@ void operator(char a)
     root= (struct tree *)malloc(sizeof(struct tree));
     root->data = a;
     printf("Operator data :%c",root->data);
-    root->right =pop(); 
-    root->left =pop();
+    root->right =pop();             //as this is postfix to infix so topmost in stack is right child so pop out top element and it is assigned as right child of root
+    root->left =pop();            //then on left is pop out
     push(root);
 }
 
