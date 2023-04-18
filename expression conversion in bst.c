@@ -1,50 +1,38 @@
+
+
 /*
 o/p:
 Enter postfix expression:
 ab+cde*-*f*g/
-
-
 Operand: a
 Operand Address: 0x564692006ac0Stack top:0x564692006ac0
-
 Operand: b
 Operand Address: 0x564692006ae0Stack top:0x564692006ae0
-
 Operator: +
 Operator Address: 0x564692006b00
 Stack top:0x564692006b00
-
 Operand: c
 Operand Address: 0x564692006b20Stack top:0x564692006b20
-
 Operand: d
 Operand Address: 0x564692006b40Stack top:0x564692006b40
-
 Operand: e
 Operand Address: 0x564692006b60Stack top:0x564692006b60
-
 Operator: *
 Operator Address: 0x564692006b80
 Stack top:0x564692006b80
-
 Operator: -
 Operator Address: 0x564692006ba0
 Stack top:0x564692006ba0
-
 Operator: *
 Operator Address: 0x564692006bc0
 Stack top:0x564692006bc0
-
 Operand: f
 Operand Address: 0x564692006be0Stack top:0x564692006be0
-
 Operator: *
 Operator Address: 0x564692006c00
 Stack top:0x564692006c00
-
 Operand: g
 Operand Address: 0x564692006c20Stack top:0x564692006c20
-
 Operator: /
 Operator Address: 0x564692006c40
 Stack top:0x564692006c40
@@ -113,7 +101,7 @@ void operator(char a)
     struct tree*root;
     root= (struct tree *)malloc(sizeof(struct tree));
     root->data = a;
-    printf("Operator data :%c",root->data);
+   // printf("Operator data :%c",root->data);
     root->right =pop();             //as this is postfix to infix so topmost in stack is right child so pop out top element and it is assigned as right child of root
     root->left =pop();            //then on left is pop out
     push(root);
@@ -132,10 +120,10 @@ int main(int argc,char **argv)
             printf("\nOperand : %c",s[i]);
             operand(s[i]);
         }
-        else(isalnum(s[i]))
+        else
         {
              printf("\nOperator : %c",s[i]);
-             operand(s[i]);
+             operator(s[i]);
         }
         i++;
     }
